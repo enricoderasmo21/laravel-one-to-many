@@ -115,7 +115,6 @@ class ProjectController extends Controller
             'description' => 'required|max:800|min:10',
             'image' => 'required',
             'creation_date' => 'required|date',
-            'techs' => 'required|max:50',
         ], [
             'title.required' => 'Devi inserire il titolo del progetto!',
             'title.max' => 'Non puoi inserire più di 50 caratteri!',
@@ -129,9 +128,6 @@ class ProjectController extends Controller
 
             'creation_date.required' => 'Devi inserire la data del progetto!',
             'creation_date.date' => 'Questo campo deve contenere una data valida!',
-
-            'techs.required' => 'Devi inserire il tipo di progetto!',
-            'techs.max' => 'Non puoi inserire più di 50 caratteri!',
             
         ])->validate(); 
         

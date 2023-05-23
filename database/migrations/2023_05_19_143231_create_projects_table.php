@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('description', 800);
             $table->string('image');
             $table->date('creation_date');
-            $table->string('techs', 50);
             $table->string('slug', 50);
 
             $table->timestamps();

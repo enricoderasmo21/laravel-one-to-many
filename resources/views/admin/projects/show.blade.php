@@ -15,7 +15,7 @@
             <div id="inner-right">
                 <p> {{$project->description}}</p>
                 <hr>
-                <div>Linguaggio: {{$project->techs}}</div>
+                <div>Tipo: {{$project->type->name}}</div>
 
                 <div id="btn-container">
                     <button class="btn btn-primary">

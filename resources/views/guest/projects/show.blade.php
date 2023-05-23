@@ -11,7 +11,7 @@
 
             <h2 class="text-center proj-title"> {{$project->title}} </h2>
 
-            <div class="_label text-center">Linguaggio: <span class="tech">{{$project->techs}}</span></div>
+            <div class="_label text-center">Tipo: <span class="type">{{$project->type->name}}</span></div>
 
             <p class="text"> {{$project->description}} </p>
     

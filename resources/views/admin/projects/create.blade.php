@@ -55,17 +55,6 @@
               @enderror 
             </div>
 
-            <div class="mb-3">
-              <label class="form-label text-light" for="techs">Linguaggio</label>
-              <input type="text" class="form-control @error('techs') is-invalid @enderror" id="techs" name="techs" value='{{old('techs')}}'>
-              
-              @error('techs')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-              @enderror 
-            </div>
-
             <button type="submit" class="btn btn-primary">AGGIUNGI</button>
         </form>
     </div>

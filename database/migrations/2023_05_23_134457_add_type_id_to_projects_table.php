@@ -18,8 +18,8 @@ return new class extends Migration
 
             $table->foreign('type_id')
             ->references('id')
-            ->on('projects'
-            )->onDelete('set null');
+            ->on('types')
+            ->onDelete('set null');
         });
     }
 

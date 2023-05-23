@@ -25,7 +25,6 @@ class ProjectSeeder extends Seeder
             $project->description = $faker->text(400);
             $project->image = $faker->imageUrl(640, 480, 'website', true);
             $project->creation_date = $faker->date();
-            $project->techs = $faker->word(1);
             $project->slug = Str::slug($project->title, '-');
 
             $project->save();
