@@ -34,6 +34,7 @@ nav{
     }
 }
 
+// HomePage
 #home{
     padding-top:80px;
 
@@ -94,6 +95,25 @@ nav{
                     height: 100%;
                 }
             }
+        }
+    }
+}
+
+
+// Admin Dashboard
+
+#admin-dash{
+
+    .cards-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 60px;
+
+        margin-top: 80px;
+
+        .card{
+            box-shadow: 6px 10px 20px rgba($color: #000000, $alpha: 0.4);
         }
     }
 }

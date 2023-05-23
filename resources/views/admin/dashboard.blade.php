@@ -3,11 +3,28 @@
 @section('content')
 <div id="admin-dash">
     <div class="container">
-        <a href="{{route('admin.projects.index')}}">Gestisci i tuoi progetti</a>
-        <a href="{{route('admin.projects.create')}}">Aggiungi un progetto</a>
 
-        <a href="{{route('admin.types.index')}}">Gestisci le tipologie di progetto</a>
-        <a href="{{route('admin.types.create')}}">Aggiungi un tipo</a>
+        <div class="cards-container">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header text-danger fs-3 text-center">
+                  Progetti
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a href="{{route('admin.projects.index')}}">Gestisci</a></li>
+                  <li class="list-group-item"><a href="{{route('admin.projects.create')}}">Crea</a></li>
+                </ul>
+            </div>
+    
+            <div class="card" style="width: 18rem;">
+                <div class="card-header text-danger fs-3 text-center">
+                  Tipi
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a href="{{route('admin.types.index')}}">Gestisci</a></li>
+                  <li class="list-group-item"><a href="{{route('admin.types.create')}}">Crea</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
