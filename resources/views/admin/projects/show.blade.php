@@ -15,7 +15,7 @@
             <div id="inner-right">
                 <p> {{$project->description}}</p>
                 <hr>
-                <div>Tipo: {{$project->type->name}}</div>
+                <div>Tipo: {{$project->type->name ?? 'indefinito'}}</div>
 
                 <div id="btn-container">
                     <button class="btn btn-primary">

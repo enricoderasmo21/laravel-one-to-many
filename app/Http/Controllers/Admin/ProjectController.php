@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -29,7 +30,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -70,7 +73,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -115,6 +120,7 @@ class ProjectController extends Controller
             'description' => 'required|max:800|min:10',
             'image' => 'required',
             'creation_date' => 'required|date',
+            'type_id' => 'nullable|exists:types,id'
         ], [
             'title.required' => 'Devi inserire il titolo del progetto!',
             'title.max' => 'Non puoi inserire più di 50 caratteri!',
@@ -128,6 +134,8 @@ class ProjectController extends Controller
 
             'creation_date.required' => 'Devi inserire la data del progetto!',
             'creation_date.date' => 'Questo campo deve contenere una data valida!',
+
+            'type_id.exists' => 'Il tipo deve essere presente nel nostro sito!',
             
         ])->validate(); 
         

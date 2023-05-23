@@ -35,6 +35,24 @@
             </div>
 
             <div class="mb-3">
+              <label class="form-label text-light" for="type_id">Tipo</label>
+              <select id="type_id" name="type_id" class="form-select @error('type_id') is-invalid @enderror" aria-label="Default select example">
+                
+                <option value="">Indefinito</option>
+                @foreach ($types as $type)
+                <option value="{{$type->id}}" {{$type->id == old('type_id', $project->type_id) ? 'selected' : ''}}>{{$type->name}}</option>   
+                @endforeach
+                
+              </select>
+
+              @error('type_id')
+              <div class="invalid-feedback">
+                {{$message}}
+              </div>
+              @enderror 
+            </div>
+
+            <div class="mb-3">
               <label class="form-label text-light" for="image">Percorso immagine</label>
               <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value='{{old('image') ?? $project->image}}'>
               
