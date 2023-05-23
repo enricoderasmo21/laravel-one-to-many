@@ -65,7 +65,7 @@
 
             <div class="mb-3">
               <label class="form-label text-light" for="creation_date">Data di creazione</label>
-              <input type="text" class="form-control @error('creation_date') is-invalid @enderror" id="creation_date" name="creation_date" value='{{old('creation_date')}}'>
+              <input type="text" class="form-control @error('creation_date') is-invalid @enderror" id="creation_date" name="creation_date" placeholder="yyyy-mm-dd" value='{{old('creation_date')}}'>
               
               @error('creation_date')
               <div class="invalid-feedback">

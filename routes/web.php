@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/', [DashboardController::class, 'index'])->name('home');
     
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
+
+    Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
 });
 
 Route::resource('guest/projects', HomeController::class)->parameters(['projects' => 'project:slug']);

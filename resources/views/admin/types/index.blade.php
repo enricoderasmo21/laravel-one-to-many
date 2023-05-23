@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2 class="text-center">PROGETTI</h2>
+<h2 class="text-center">TIPI</h2>
 
 <div id="admin-index">
   <div class="container">
@@ -11,18 +11,16 @@
               <tr>
                 <th scope="col">Nome</th>
                 <th scope="col">Descrizione</th>
-                <th scope="col">Data</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($projects as $project)
+              @foreach ($types as $type)
               
               <tr>
-                <td>{{$project->title}}</td>
-                <td>{{$project->description}}</td>
-                <td>{{$project->creation_date}}</td>
-                <td><a href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
+                <td>{{$type->name}}</td>
+                <td>{{$type->description}}</td>
+                <td><a href="{{route('admin.types.show', $type->slug)}}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
               </tr>
               
               @endforeach
@@ -31,6 +29,6 @@
   </div>
 </div>
 
+
+
 @endsection
-
-
