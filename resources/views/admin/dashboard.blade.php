@@ -7,6 +7,7 @@
         <a href="{{route('admin.projects.create')}}">Aggiungi un progetto</a>
 
         <a href="{{route('admin.types.index')}}">Gestisci le tipologie di progetto</a>
+        <a href="{{route('admin.types.create')}}">Aggiungi un tipo</a>
     </div>
 </div>
 @endsection

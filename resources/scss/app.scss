@@ -118,6 +118,17 @@ nav{
             }
         }
     }
+
+    #info-type-container{
+        display: flex;
+        justify-content: center;
+
+        #btn-container{
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+    }
 }
 
 // Admin edit

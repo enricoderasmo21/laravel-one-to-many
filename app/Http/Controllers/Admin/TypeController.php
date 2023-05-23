@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailables\Content;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class TypeController extends Controller
 {
@@ -28,7 +30,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -39,7 +41,15 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validation($request);
+
+        $formData = $request->all();
+        $newType = new Type();
+        $newType->fill($formData);
+        $newType->slug = Str::slug($newType->name);
+        $newType->save();
+
+        return redirect()->route('admin.types.show', $newType->slug);
     }
 
     /**
@@ -48,9 +58,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Type $type)
     {
-        //
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -59,9 +69,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -71,9 +81,14 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Type $type)
     {
-        //
+        $this->validation($request);
+
+        $formData = $request->all();
+        $type->slug = Str::slug($formData['name'], '-');
+        $type->update($formData);
+        return redirect()->route('admin.types.show', $type->slug);
     }
 
     /**
@@ -85,5 +100,27 @@ class TypeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function validation($request){
+
+        $formData = $request->all();
+
+        $validator = Validator::make($formData, [
+
+            // Qui va inserito l'array
+
+            'name' => 'required|max:20',
+            'description' => 'required|max:200',
+        ], [
+            'name.required' => 'Devi inserire il titolo del tipo!',
+            'name.max' => 'Non puoi inserire più di 20 caratteri!',
+
+            'description.required' => 'Devi inserire la descrizione del tipo!',
+            'description.max' => 'Non puoi inserire più di 200 caratteri!',
+            
+        ])->validate(); 
+        
+        return $validator;
     }
 }
