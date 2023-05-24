@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailables\Content;
@@ -22,6 +23,7 @@ class TypeController extends Controller
 
         return view('admin.types.index', compact('types'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

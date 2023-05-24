@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\IntersectionController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\HomeController;
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function() {
     
     Route::get('/', [DashboardController::class, 'index'])->name('home');
+
+    Route::get('/intersection', [IntersectionController::class, 'intersection'])->name('intersection');
     
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
 

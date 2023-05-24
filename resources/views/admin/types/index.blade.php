@@ -11,6 +11,7 @@
               <tr>
                 <th scope="col">Nome</th>
                 <th scope="col">Descrizione</th>
+                <th>N. progetti</th>
                 <th></th>
               </tr>
             </thead>
@@ -20,6 +21,7 @@
               <tr>
                 <td>{{$type->name}}</td>
                 <td>{{$type->description}}</td>
+                <td> <a href="{{route('admin.intersection', $type)}}">{{ count($type->projects) }}</a></td>
                 <td><a href="{{route('admin.types.show', $type->slug)}}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
               </tr>
               
@@ -28,7 +30,5 @@
       </table>
   </div>
 </div>
-
-
 
 @endsection
