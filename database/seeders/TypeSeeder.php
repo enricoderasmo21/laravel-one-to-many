@@ -17,15 +17,17 @@ class TypeSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i = 0; $i < 6; $i++){
+        $types = ['Front End', 'Back End', 'Full Stack'];
 
-            $type = new Type();
+        foreach($types as $type){
 
-            $type->name = $faker->word(1);
-            $type->description = $faker->text(100);
-            $type->slug = Str::slug($type->name, '-');
+            $NewType = new Type();
 
-            $type->save();
+            $NewType->name = $type;
+            $NewType->description = $faker->text(100);
+            $NewType->slug = Str::slug($NewType->name, '-');
+
+            $NewType->save();
         }
     }
 }

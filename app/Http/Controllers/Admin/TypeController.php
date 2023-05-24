@@ -46,12 +46,12 @@ class TypeController extends Controller
         $this->validation($request);
 
         $formData = $request->all();
-        $newType = new Type();
-        $newType->fill($formData);
-        $newType->slug = Str::slug($newType->name);
-        $newType->save();
+        $type = new Type();
+        $type->fill($formData);
+        $type->slug = Str::slug($type->name);
+        $type->save();
 
-        return redirect()->route('admin.types.show', $newType->slug);
+        return redirect()->route('admin.types.show', $type->slug);
     }
 
     /**

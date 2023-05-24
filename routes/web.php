@@ -35,7 +35,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     
     Route::get('/', [DashboardController::class, 'index'])->name('home');
 
-    Route::get('/intersection', [IntersectionController::class, 'intersection'])->name('intersection');
+    Route::get('/intersection/{type}', [IntersectionController::class, 'intersection'])->name('intersection');
     
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
 

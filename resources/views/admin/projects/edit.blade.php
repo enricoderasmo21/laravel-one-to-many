@@ -35,6 +35,17 @@
             </div>
 
             <div class="mb-3">
+              <h6>Tecnologie</h6>
+
+              <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+              @foreach($technologies as $technology)
+                <input type="checkbox" class="btn-check" id="tag-{{$technology->id}}" autocomplete="off" name="technologies[]" value="{{$technology->id}}">
+                <label class="btn btn-outline-primary" for="tag-{{$technology->id}}">{{$technology->name}}</label>
+              @endforeach
+              </div>
+            </div>
+
+            <div class="mb-3">
               <label class="form-label text-light" for="type_id">Tipo</label>
               <select id="type_id" name="type_id" class="form-select @error('type_id') is-invalid @enderror" aria-label="Default select example">
                 

@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 
 class IntersectionController extends Controller
 {
-    public function intersection()
+    public function intersection(Type $type)
     {  
-        $types = Type::all();
-
-        return view('admin.types.intersection', compact('types'));
+        
+        return view('admin.types.intersection', compact('type'));
     }
 }
