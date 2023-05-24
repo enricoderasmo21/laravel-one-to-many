@@ -20,8 +20,9 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+        $types = Type::all();
 
-        return view('admin.projects.index', compact('projects'));
+        return view('admin.projects.index', compact('projects', 'types'));
     }
 
     /**
@@ -81,8 +82,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.edit', compact('project', 'types'));
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -99,6 +101,15 @@ class ProjectController extends Controller
         $formData = $request->all();
         $project->slug = Str::slug($formData['title'], '-');
         $project->update($formData);
+
+        if(array_key_exists('technologies', $formData)){
+
+            $project->technologies()->sync($formData['technologies']);
+        } else {
+
+            $project->technologies()->detach();
+        }
+
         return redirect()->route('admin.projects.show', $project->slug);
     }
 

@@ -11,6 +11,7 @@
               <tr>
                 <th scope="col">Nome</th>
                 <th scope="col">Descrizione</th>
+                <th scope="col">Tipo</th>
                 <th scope="col">Data</th>
                 <th></th>
               </tr>
@@ -21,6 +22,7 @@
               <tr>
                 <td>{{$project->title}}</td>
                 <td>{{$project->description}}</td>
+                <td>{{$project->type->name ?? 'indefinito'}}</td>
                 <td>{{$project->creation_date}}</td>
                 <td><a href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
               </tr>

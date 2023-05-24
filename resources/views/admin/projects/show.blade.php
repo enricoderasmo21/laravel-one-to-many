@@ -16,10 +16,15 @@
             <div id="inner-right">
                 <p> {{$project->description}}</p>
                 <hr>
-                <div>Tecnologie utilizzate : {{$project->technology->name ?? 'indefinito'}} </div>
-                <div>Tipo: {{$project->type->name ?? 'indefinito'}}</div>
+                <div class="text-start">Tipo: {{$project->type->name ?? 'indefinito'}}</div>
+                <div class="d-flex">
+                  Tecnologie utilizzate: 
+                  @foreach($project->technologies as $technology)
+                  <span class="badge mx-2" style="background-color: {{$technology->color}}">{{$technology->name ?? 'indefinito'}}</span>
+                  @endforeach
+                </div>
 
-                <div id="btn-container">
+                <div id="btn-container" class="mt-4">
                     <button class="btn btn-primary">
                         <a href="{{route('admin.projects.edit', $project->slug)}}">MODIFICA</a>
                     </button>
