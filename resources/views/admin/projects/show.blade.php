@@ -7,6 +7,7 @@
     <div class="container mt-3 text-center">
     
         <h2>{{$project->title}}</h2>
+        
 
         <div id="info-container">
             <div id="img-container">
@@ -15,6 +16,7 @@
             <div id="inner-right">
                 <p> {{$project->description}}</p>
                 <hr>
+                <div>Tecnologie utilizzate : {{$project->technology->name ?? 'indefinito'}} </div>
                 <div>Tipo: {{$project->type->name ?? 'indefinito'}}</div>
 
                 <div id="btn-container">
