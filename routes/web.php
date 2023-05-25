@@ -35,16 +35,16 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function() {
     
+    // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('home');
-
+    
+    // Intersections
     Route::get('/intersection/{type}', [IntersectionController::class, 'intersection'])->name('intersection');
-
     Route::get('/sec-intersection/{technology}', [SecIntersectionController::class, 'intersection'])->name('secIntersection');
     
+    // Entities
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
-
     Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
-
     Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug']);
 });
 
