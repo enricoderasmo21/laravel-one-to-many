@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Project;
-use App\Models\Type;
+use App\Models\Technology;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Mailables\Content;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class TypeController extends Controller
+class TechnologyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +17,10 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.types.index', compact('types'));
+        return view('admin.technologies.index', compact('technologies'));
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +29,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('admin.types.create');
+        return view('admin.technologies.create');
     }
 
     /**
@@ -46,64 +43,64 @@ class TypeController extends Controller
         $this->validation($request);
 
         $formData = $request->all();
-        $type = new Type();
-        $type->fill($formData);
-        $type->slug = Str::slug($type->name);
-        $type->save();
+        $technology = new Technology();
+        $technology->fill($formData);
+        $technology->slug = Str::slug($technology->name);
+        $technology->save();
 
-        return redirect()->route('admin.types.show', $type->slug);
+        return redirect()->route('admin.technologies.show', $technology->slug);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function show(Type $type)
+    public function show(Technology $technology)
     {
-        return view('admin.types.show', compact('type'));
+        return view('admin.technologies.show', compact('technology'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function edit(Type $type)
+    public function edit(Technology $technology)
     {
-        return view('admin.types.edit', compact('type'));
+        return view('admin.technologies.create', compact('technology'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(Request $request, Technology $technology)
     {
         $this->validation($request);
 
         $formData = $request->all();
-        $type->slug = Str::slug($formData['name'], '-');
-        $type->update($formData);
-        return redirect()->route('admin.types.show', $type->slug);
+        $technology->slug = Str::slug($formData['name'], '-');
+        $technology->update($formData);
+        return redirect()->route('admin.technologies.show', $technology->slug);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy(Technology $technology)
     {
-        $type->delete();
+        $technology->delete();
         
-        return redirect()->route('admin.types.index');
+        return redirect()->route('admin.technologies.index');
     }
 
     private function validation($request){
@@ -113,13 +110,13 @@ class TypeController extends Controller
         $validator = Validator::make($formData, [
 
             'name' => 'required|max:20',
-            'description' => 'required|max:200',
+            'color' => 'nullable|max:7|starts_with:#',
         ], [
-            'name.required' => 'Devi inserire il titolo del tipo!',
+            'name.required' => 'Devi inserire il titolo della tecnologia!',
             'name.max' => 'Non puoi inserire più di 20 caratteri!',
 
-            'description.required' => 'Devi inserire la descrizione del tipo!',
-            'description.max' => 'Non puoi inserire più di 200 caratteri!',
+            'color.starts_with' => 'Il colore deve inziare con #!',
+            'color.max' => 'Non puoi inserire più di 7 caratteri!',
             
         ])->validate(); 
         

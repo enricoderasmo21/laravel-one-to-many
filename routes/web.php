@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IntersectionController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\SecIntersectionController;
+use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -36,10 +38,14 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/', [DashboardController::class, 'index'])->name('home');
 
     Route::get('/intersection/{type}', [IntersectionController::class, 'intersection'])->name('intersection');
+
+    Route::get('/sec-intersection/{technology}', [SecIntersectionController::class, 'intersection'])->name('secIntersection');
     
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
 
     Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
+
+    Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug']);
 });
 
 Route::resource('guest/projects', HomeController::class)->parameters(['projects' => 'project:slug']);

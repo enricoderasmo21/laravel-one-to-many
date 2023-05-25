@@ -21,7 +21,7 @@
               
               <tr>
                 <td>{{$project->title}}</td>
-                <td>{{$project->description}}</td>
+                <td>{{ substr($project->description, 0, 80,) }}...</td>
                 <td>{{$project->type->name ?? 'indefinito'}}</td>
                 <td>{{$project->creation_date}}</td>
                 <td><a href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
