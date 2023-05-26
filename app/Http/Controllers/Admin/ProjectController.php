@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -50,6 +51,13 @@ class ProjectController extends Controller
 
         $formData = $request->all();
         $project = new Project();
+
+        if($request->hasFile('image')){
+
+            $path = Storage::put('project_images', $request->image);
+            $formData['image'] = $path;
+        }
+
         $project->fill($formData);
         $project->slug = Str::slug($project->title);
         $project->save();
@@ -96,9 +104,21 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $this->validation($request);
-        
         $formData = $request->all();
+        
+        $this->validation($request);
+
+        if($request->hasFile('image')){
+
+            if($project->image){
+
+                Storage::delete($project->image);
+            }
+
+            $path = Storage::put('project_images', $request->image);
+            $formData['image'] = $path;
+        }
+        
         $project->slug = Str::slug($formData['title'], '-');
         $project->update($formData);
 
@@ -121,6 +141,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->image){
+
+            Storage::delete($project->image);
+        }
+
         $project->delete();
         
         return redirect()->route('admin.projects.index');
@@ -134,7 +159,7 @@ class ProjectController extends Controller
 
             'title' => 'required|max:50|min:4',
             'description' => 'required|max:800|min:10',
-            'image' => 'required',
+            'image' => 'required|image|max:4096',
             'creation_date' => 'required|date',
             'type_id' => 'nullable|exists:types,id',
             'technologies' => 'exists:technologies,id' 
@@ -147,7 +172,9 @@ class ProjectController extends Controller
             'description.max' => 'Non puoi inserire più di 1000 caratteri!',
             'description.min' => 'Devi inserire almeno 10 caratteri!',
 
-            'image.required' => "Devi inserire il percorso dell'immagine del progetto!",
+            'image.required' => "Devi inserire l'immagine del progetto!",
+            'image.max' => "La dimensione del file è troppo grande!",
+            'image.image' => "Il file deve essere di tipo immagine!",
 
             'creation_date.required' => 'Devi inserire la data del progetto!',
             'creation_date.date' => 'Questo campo deve contenere una data valida!',

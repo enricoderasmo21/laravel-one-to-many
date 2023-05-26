@@ -5,7 +5,7 @@
 <div id="guest-show">
     <div class="back-dark">
         <div class="img-container">
-            <img src="{{Vite::asset('resources/img/project-boolflix.png')}}" alt="">
+            <img src="{{asset('storage/' . $project->image)}}" alt="">
         </div>
         <div class="container">
 

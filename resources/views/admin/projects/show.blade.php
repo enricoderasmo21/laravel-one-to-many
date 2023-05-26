@@ -11,20 +11,19 @@
 
         <div id="info-container">
             <div id="img-container">
-                <img src="{{$project->image}}" alt="">
+                <img src="{{asset('storage/' . $project->image)}}" alt="">
             </div>
             <div id="inner-right">
                 <p> {{$project->description}}</p>
                 <hr>
                 <div class="text-start">Tipo: {{$project->type->name ?? 'indefinito'}}</div>
-                <div class="d-flex">
-                  Tecnologie utilizzate: 
+                <div class="d-flex mt-3">
                   @foreach($project->technologies as $technology)
                   <span class="badge mx-2" style="background-color: {{$technology->color}}">{{$technology->name ?? 'indefinito'}}</span>
                   @endforeach
                 </div>
 
-                <div id="btn-container" class="mt-4">
+                <div id="btn-container" class="mt-4 d-flex gap-3">
                     <button class="btn btn-primary">
                         <a href="{{route('admin.projects.edit', $project->slug)}}">MODIFICA</a>
                     </button>
