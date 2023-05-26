@@ -42,8 +42,14 @@
                 <label class="btn btn-outline-primary" for="tag-{{$technology->id}}">{{$technology->name}}</label>
               @endforeach
               </div>
-            </div>
 
+              @error('technologies')
+              <div class="text-danger">
+                {{$message}}
+              </div>
+              @enderror 
+              
+            </div>
 
             <div class="mb-3">
               <label class="form-label text-light" for="type_id">Tipo</label>

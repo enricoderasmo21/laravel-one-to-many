@@ -132,13 +132,12 @@ class ProjectController extends Controller
 
         $validator = Validator::make($formData, [
 
-            // Qui va inserito l'array
-
             'title' => 'required|max:50|min:4',
             'description' => 'required|max:800|min:10',
             'image' => 'required',
             'creation_date' => 'required|date',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'exists:technologies,id' 
         ], [
             'title.required' => 'Devi inserire il titolo del progetto!',
             'title.max' => 'Non puoi inserire più di 50 caratteri!',
@@ -154,6 +153,8 @@ class ProjectController extends Controller
             'creation_date.date' => 'Questo campo deve contenere una data valida!',
 
             'type_id.exists' => 'Il tipo deve essere presente nel nostro sito!',
+
+            'technologies.exists' => 'La tecnologia deve essere presente nel nostro sito!',
             
         ])->validate(); 
         
