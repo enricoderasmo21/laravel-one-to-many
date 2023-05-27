@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2 class="text-center">PROGETTI</h2>
+<h2 class="index-title text-center">PROGETTI</h2>
 
 <div id="admin-index">
   <div class="container">

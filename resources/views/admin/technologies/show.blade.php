@@ -6,11 +6,11 @@
 
     <div class="container mt-3 text-center">
     
-        <h2>{{$technology->name}}</h2>
+        <h2 id="proj-title">{{$technology->name}}</h2>
 
-        <div id="info-type-container">
+        <div id="info-technology-container">
             <div id="inner-right">
-                <p> {{$technology->color}}</p>
+                <div id="color-square" class="mx-auto" style="background-color:{{$technology->color}}" >{{$technology->color}}</div>
                 <hr>
 
                 <div id="btn-container">

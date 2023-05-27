@@ -19,6 +19,10 @@ a{
     background-color: black;
 }
 
+.container{
+    padding-bottom: 40px;
+}
+
 // Assets
 
 nav{
@@ -118,8 +122,35 @@ nav{
     }
 }
 
+// Admin index
+
+.index-title{
+    margin: 40px 0;
+
+        font-size: 3em;
+
+        color: #f16529;
+
+}
+
+#admin-index{
+
+    
+
+}
+
+// /Admin index
+
 // Admin show
 #admin_show{
+
+    #proj-title{
+        margin: 40px 0;
+
+        font-size: 3em;
+
+        color: #f16529;
+    }
     
     #info-container{
         display: flex;
@@ -127,8 +158,10 @@ nav{
         align-items: center;
         gap: 30px;
 
+        width: 100%;
+
         #img-container{
-            width: 700px;
+            width: 50%;
 
             border-radius: 30px;
             overflow: hidden;
@@ -137,6 +170,19 @@ nav{
                 width: 100%;
             }
         }
+
+        #inner-right{
+            width: 50%;
+            
+            #btn-container{
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+    
+                margin-top: 80px;
+            }
+        }
+
     }
 
     #info-type-container{
@@ -146,7 +192,30 @@ nav{
         #btn-container{
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 50px;
+
+            margin-top: 20px;
+        }
+    }
+
+    #info-technology-container{
+        display: flex;
+        justify-content: center;
+
+        #color-square{
+            height: 30px;
+
+            border: 2px solid black;
+
+            color: black;
+        }
+
+        #btn-container{
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+
+            margin-top: 20px;
         }
     }
 }
@@ -164,6 +233,13 @@ nav{
         color: white;
     }
 }
+
+
+
+
+
+
+// ----------------Guest
 
 // Guest Index
 

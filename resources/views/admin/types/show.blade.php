@@ -6,7 +6,7 @@
 
     <div class="container mt-3 text-center">
     
-        <h2>{{$type->name}}</h2>
+        <h2 id="proj-title">{{$type->name}}</h2>
 
         <div id="info-type-container">
             <div id="inner-right">

@@ -6,7 +6,7 @@
 
     <div class="container mt-3 text-center">
     
-        <h2>{{$project->title}}</h2>
+        <h2 id="proj-title">{{$project->title}}</h2>
         
 
         <div id="info-container">
@@ -23,7 +23,7 @@
                   @endforeach
                 </div>
 
-                <div id="btn-container" class="mt-4 d-flex gap-3">
+                <div id="btn-container">
                     <button class="btn btn-primary">
                         <a href="{{route('admin.projects.edit', $project->slug)}}">MODIFICA</a>
                     </button>

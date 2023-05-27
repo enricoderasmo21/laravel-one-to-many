@@ -20,7 +20,7 @@
         @foreach($technology->projects as $project)
           <tr>
             <td>{{$project->title}}</td>
-            <td>{{$project->description}}</td>
+            <td>{{ substr($project->description, 0, 80,) }}...</td>
             <td>
               <a href="{{route('admin.projects.show', $project)}}"><i class="fa-solid fa-magnifying-glass"></i></a>
             </td>

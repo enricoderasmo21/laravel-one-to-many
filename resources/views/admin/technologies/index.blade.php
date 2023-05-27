@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2 class="text-center text-danger fs-1">TECNOLOGIE</h2>
+<h2 class="index-title text-center">TECNOLOGIE</h2>
 
 <div id="admin-index">
   <div class="container">
