@@ -49,6 +49,18 @@
                         <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                     </li>
                 </ul>
+
+                <ul class="navbar-nav me-5">
+                    <li class="nav-item ml-5">
+                        <a class="nav-link" href="{{route('admin.projects.index')}}">Progetti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.types.index')}}">Tipi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.technologies.index')}}">Tecnologie</a>
+                    </li>
+                </ul>
     
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
