@@ -47,9 +47,10 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validation($request);
-
+        
         $formData = $request->all();
+        
+        $this->validation($request);
         $project = new Project();
 
         if($request->hasFile('image')){
@@ -106,7 +107,7 @@ class ProjectController extends Controller
     {
         $formData = $request->all();
         
-        $this->validation($request);
+        $this->validation_edit($request);
 
         if($request->hasFile('image')){
 
@@ -173,6 +174,42 @@ class ProjectController extends Controller
             'description.min' => 'Devi inserire almeno 10 caratteri!',
 
             'image.required' => "Devi inserire l'immagine del progetto!",
+            'image.max' => "La dimensione del file è troppo grande!",
+            'image.image' => "Il file deve essere di tipo immagine!",
+
+            'creation_date.required' => 'Devi inserire la data del progetto!',
+            'creation_date.date' => 'Questo campo deve contenere una data valida!',
+
+            'type_id.exists' => 'Il tipo deve essere presente nel nostro sito!',
+
+            'technologies.exists' => 'La tecnologia deve essere presente nel nostro sito!',
+            
+        ])->validate(); 
+        
+        return $validator;
+    }
+
+    private function validation_edit($request){
+
+        $formData = $request->all();
+
+        $validator = Validator::make($formData, [
+
+            'title' => 'required|max:50|min:4',
+            'description' => 'required|max:800|min:10',
+            'image' => 'nullable|image|max:4096',
+            'creation_date' => 'required|date',
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'exists:technologies,id' 
+        ], [
+            'title.required' => 'Devi inserire il titolo del progetto!',
+            'title.max' => 'Non puoi inserire più di 50 caratteri!',
+            'title.min' => 'Devi inserire almeno 4 caratteri!',
+
+            'description.required' => 'Devi inserire la descrizione del progetto!',
+            'description.max' => 'Non puoi inserire più di 1000 caratteri!',
+            'description.min' => 'Devi inserire almeno 10 caratteri!',
+
             'image.max' => "La dimensione del file è troppo grande!",
             'image.image' => "Il file deve essere di tipo immagine!",
 
